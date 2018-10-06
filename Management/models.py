@@ -45,6 +45,8 @@ class LessonTwo(models.Model):
     level1 = models.DecimalField(max_digits=5, decimal_places=2, default=60.00)
     level2 = models.DecimalField(max_digits=5, decimal_places=2, default=60.00)
     level3 = models.DecimalField(max_digits=5, decimal_places=2, default=60.00)
+    level4 = models.DecimalField(max_digits=5, decimal_places=2, default=60.00)
+    level5 = models.DecimalField(max_digits=5, decimal_places=2, default=60.00)
     average = models.DecimalField(max_digits=5, decimal_places=2, default=60.00)
     train_time = models.DateTimeField(auto_now=True)
 
