@@ -93,28 +93,31 @@ def update_person(request):
 #         ,{key:"level3",value:[{date:"day1",key:"level3",value:"60"},{date:"day2",key:"level3",value:"60"},{date:"day3",key:"level3",value:"60"}]}]
 def lesson_analysis(request,lesson, id):
     if str(lesson) =='lesson1':
-        lessons = LessonOne.objects.filter(number=id).order_by('train_time')[0:5]
+        lessons = LessonOne.objects.filter(number=id).order_by('-train_time')[0:5]
         list_lesson = [];
         for lesson in lessons:
             json_lesson = {'level1':str(lesson.level1),'level2':str(lesson.level2),'level3':str(lesson.level3),'level4':str(lesson.level4)
                                ,'level5':str(lesson.level5),'average':str(lesson.average),'date':lesson.train_time.strftime("%Y.%m.%d %H:%M")}
             list_lesson.append(json_lesson)
+        list_lesson.reverse()
         return HttpResponse(json.dumps(list_lesson),content_type="application/json")
     elif str(lesson) == 'lesson2':
-        lessons = LessonTwo.objects.filter(number=id).order_by('train_time')[0:5]
+        lessons = LessonTwo.objects.filter(number=id).order_by('-train_time')[0:5]
         list_lesson = [];
         for lesson in lessons:
             json_lesson = {'level1':str(lesson.level1),'level2':str(lesson.level2),'level3':str(lesson.level3),'level4':str(lesson.level4)
                                ,'level5':str(lesson.level5),'average':str(lesson.average),'date':lesson.train_time.strftime("%Y.%m.%d %H:%M")}
             list_lesson.append(json_lesson)
+        list_lesson.reverse()
         return HttpResponse(json.dumps(list_lesson), content_type="application/json")
     elif str(lesson) == 'lesson3':
-        lessons = LessonThree.objects.filter(number=id).order_by('train_time')[0:5]
+        lessons = LessonThree.objects.filter(number=id).order_by('-train_time')[0:5]
         list_lesson = [];
         for lesson in lessons:
             # json_lesson = {'level1': str(lesson.level1),'average': str(lesson.average),'date': lesson.train_time.strftime("%Y.%m.%d %H:%M")}
             json_lesson = {'level1': str(lesson.level1),'date': lesson.train_time.strftime("%Y.%m.%d %H:%M")}
             list_lesson.append(json_lesson)
+        list_lesson.reverse()
         return HttpResponse(json.dumps(list_lesson), content_type="application/json")
     else:
         return HttpResponse("lesson is "+lesson+" and id is "+id)
